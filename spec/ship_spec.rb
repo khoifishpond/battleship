@@ -5,6 +5,7 @@ describe Ship do
   context 'Attributes' do
     # before each test, run this
     before(:each) do
+      # creates a new Ship object
       @cruiser = Ship.new("Cruiser", 3)
     end
 
