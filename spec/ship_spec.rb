@@ -5,17 +5,17 @@ describe Ship do
   context 'Attributes' do
     # before each test, run this
     before(:each) do
-      cruiser = Ship.new("Cruiser", 3)
+      @cruiser = Ship.new("Cruiser", 3)
     end
 
     it 'exists' do
       # Kelsey writes a method to satisfy this test
-      expect(cruiser).to be_a(Ship)
+      expect(@cruiser).to be_a(Ship)
     end
 
     xit 'has a name' do
       # Kelsey writes a method to satisfy this test
-      expect(cruiser.name).to eq("Cruiser")
+      expect(@cruiser.name).to eq("Cruiser")
     end
 
     xit 'has a length' do
