@@ -27,39 +27,16 @@ class Cell
   end
 
   def render(reveal = false)
-    def make_s
-      if reveal == true && @is_empty == false
-        'S'
-      else
-        '.'
-      end
-    end
-
-
-  end
-
-  def make_m
-    if reveal == true && @is_empty == true
+    if reveal == true && @is_empty == false && @is_fired_upon == true && @ship.sunk? == true
+      'X'
+    elsif reveal == true && @is_empty == false && @is_fired_upon == true
+      'H'
+    elsif reveal == true && @is_empty == false
+      'S'
+    elsif reveal == true && @is_empty == true
       'M'
     else
       '.'
     end
   end
-
-  def make_h #same as make_s before && is_fired_upon
-    if @cell.make_s && @is_fired_upon == true #is there a way to use fire_upon here?
-      'H'
-    else
-      '.'
-    end
-  end
-
-  def make_x
-    if reveal == true && @is_empty == false && @is_fired_upon == true && ship.is_sunk
-      'X'
-    else
-      '.'
-    end
-  end
-
 end
