@@ -92,6 +92,7 @@ describe "Cell" do
     it "can render a hit" do
       expect(@cell_2.render).to eq('.')
       expect(@cell_2.render(true)).to eq('S')
+      @cell_2.fire_upon
       expect(@cell_2.render).to eq('.')
       expect(@cell_2.render(true)).to eq('H')
     end
@@ -99,15 +100,18 @@ describe "Cell" do
     # TODO: test and .sunk? method
     it "updates status of ship when hit" do
       expect(@cell_2.render).to eq('.')
-      @cruiser.hit
-      @cruiser.hit
       @cell_2.fire_upon
-      expect(@cell_2.render).to eq('X')
+      expect(@cell_2.render(true)).to eq('H')
+      expect(@cell_2.ship.sunk?).to eq(false)
     end
 
     # TODO: test and method
-    xit "can render a sunk ship" do
-
+    it "can render a sunk ship" do
+      expect(@cell_2.render).to eq('.')
+      @cruiser.hit
+      @cruiser.hit
+      @cell_2.fire_upon
+      expect(@cell_2.render(true)).to eq('X')
     end
   end
 end
