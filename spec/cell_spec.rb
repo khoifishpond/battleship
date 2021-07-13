@@ -51,7 +51,7 @@ describe "Cell" do
       expect(@cell.ship.health).to eq(3)
 
       @cell.fire_upon
-      
+
       expect(@cell.fired_upon?).to eq(true)
       expect(@cell.ship.health).to eq(2)
     end
@@ -69,9 +69,30 @@ describe "Cell" do
       expect(@cell_1.render).to eq('.')
     end
 
+    # TODO: method
+    it "can render a miss" do
+      @cell_1.fire_upon
+
+      expect(@cell_1.render).to eq('M')
+    end
+
     it "can (optionally) render the location of a ship" do
       expect(@cell_2.render).to eq('.')
       expect(@cell_2.render(true)).to eq('S')
+    end
+
+    # TODO: test and method
+    xit "can render a hit" do
+      
+    end
+
+    # TODO: test and .sunk? method
+    xit "updates status of ship when hit" do
+      
+    end
+
+    # TODO: test and method
+    it "can render a sunk ship" do
     end
   end
 end
