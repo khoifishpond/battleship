@@ -83,13 +83,13 @@ describe "Cell" do
       expect(@cell_1.render(true)).to eq('M')
     end
 
-    xit "can (optionally) render the location of a ship" do
+    it "can (optionally) render the location of a ship" do
       expect(@cell_2.render).to eq('.')
       expect(@cell_2.render(true)).to eq('S')
     end
 
     # TODO: test and method
-    xit "can render a hit" do
+    it "can render a hit" do
       expect(@cell_2.render).to eq('.')
       expect(@cell_2.render(true)).to eq('S')
       expect(@cell_2.render).to eq('.')
@@ -97,8 +97,12 @@ describe "Cell" do
     end
 
     # TODO: test and .sunk? method
-    xit "updates status of ship when hit" do
-
+    it "updates status of ship when hit" do
+      expect(@cell_2.render).to eq('.')
+      @cruiser.hit
+      @cruiser.hit
+      @cell_2.fire_upon
+      expect(@cell_2.render).to eq('X')
     end
 
     # TODO: test and method
