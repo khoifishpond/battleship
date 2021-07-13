@@ -11,5 +11,9 @@ describe "Cell" do
     it "exists" do
       expect(@cell).to be_a(Cell)
     end
+
+    it "has a coordinate" do
+      expect(@cell.coordinate).to eq("B4")
+    end
   end
 end
