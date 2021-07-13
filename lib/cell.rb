@@ -20,4 +20,9 @@ class Cell
   def fired_upon?
     @is_fired_upon
   end
+
+  def fire_upon
+    @ship.hit
+    @is_fired_upon = true
+  end
 end
