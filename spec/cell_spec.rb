@@ -15,5 +15,9 @@ describe "Cell" do
     it "has a coordinate" do
       expect(@cell.coordinate).to eq("B4")
     end
+
+    it "has a ship" do
+      expect(@cell.ship).to eq(nil)
+    end
   end
 end
