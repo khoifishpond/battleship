@@ -76,7 +76,7 @@ describe "Cell" do
       expect(@cell_1.render).to eq('M')
     end
 
-    it "can (optionally) render the location of a ship" do
+    xit "can (optionally) render the location of a ship" do
       expect(@cell_2.render).to eq('.')
       expect(@cell_2.render(true)).to eq('S')
     end
@@ -92,8 +92,8 @@ describe "Cell" do
     end
 
     # TODO: test and method
-    it "can render a sunk ship" do
-      
+    xit "can render a sunk ship" do
+
     end
   end
 end
