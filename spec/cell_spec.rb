@@ -40,7 +40,7 @@ describe "Cell" do
       @cell.place_ship(@cruiser)
     end
 
-    it "fired upon defaults to false" do
+    it "is not fired upon by default" do
       expect(@cell.fired_upon?).to eq(false)
     end
 
