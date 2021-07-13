@@ -40,6 +40,8 @@ describe "Cell" do
       @cell = Cell.new("B4")
       @cruiser = Ship.new("Cruiser", 3)
       @cell.place_ship(@cruiser)
+      @cell_2 = Cell.new("C3")
+
     end
 
     it "is not fired upon by default" do
@@ -54,6 +56,10 @@ describe "Cell" do
 
       expect(@cell.fired_upon?).to eq(true)
       expect(@cell.ship.health).to eq(2)
+#kelsey added new test below to check adjusted fire_upon method
+      expect(@cell_2.fired_upon?).to eq(false)
+      @cell_2.fire_upon
+      expect(@cell_2.fired_upon?).to eq(true)
     end
   end
 
@@ -71,9 +77,10 @@ describe "Cell" do
 
     # TODO: method
     it "can render a miss" do
+      expect(@cell_1.render).to eq('.')
       @cell_1.fire_upon
-
-      expect(@cell_1.render).to eq('M')
+      expect(@cell_1.render).to eq('.')
+      expect(@cell_1.render(true)).to eq('M')
     end
 
     xit "can (optionally) render the location of a ship" do
@@ -83,12 +90,15 @@ describe "Cell" do
 
     # TODO: test and method
     xit "can render a hit" do
-      
+      expect(@cell_2.render).to eq('.')
+      expect(@cell_2.render(true)).to eq('S')
+      expect(@cell_2.render).to eq('.')
+      expect(@cell_2.render(true)).to eq('H')
     end
 
     # TODO: test and .sunk? method
     xit "updates status of ship when hit" do
-      
+
     end
 
     # TODO: test and method
