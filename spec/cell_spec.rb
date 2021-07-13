@@ -6,6 +6,7 @@ describe "Cell" do
   context "Attributes" do
     before(:each) do
       @cell = Cell.new("B4")
+      @cruiser = Ship.new("Cruiser", 3)
     end
 
     it "exists" do
@@ -22,6 +23,12 @@ describe "Cell" do
 
     it "defaults to empty" do
       expect(@cell.empty?).to eq(true)
+    end
+
+    it "can place a ship" do
+      expect(@cell.ship).to eq(nil)
+      @cell.place_ship(@cruiser)
+      expect(@cell.ship).to eq(@cruiser)
     end
   end
 end
