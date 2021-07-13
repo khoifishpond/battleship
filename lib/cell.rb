@@ -25,4 +25,14 @@ class Cell
     @ship.hit
     @is_fired_upon = true
   end
+
+  def render(reveal = false)
+    if reveal == true && @is_empty == false
+      'S'
+    else
+      '.'
+    end
+
+
+  end
 end
