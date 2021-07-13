@@ -1,10 +1,11 @@
 class Cell
-  attr_reader :coordinate, :ship, :is_empty
+  attr_reader :coordinate, :ship, :is_empty, :is_fired_upon
 
   def initialize(coordinate)
     @coordinate = coordinate
     @ship = nil
     @is_empty = true
+    @is_fired_upon = false
   end
 
   def empty?
@@ -16,4 +17,7 @@ class Cell
     @is_empty = false
   end
 
+  def fired_upon?
+    @is_fired_upon
+  end
 end
