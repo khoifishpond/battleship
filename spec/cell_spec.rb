@@ -19,5 +19,9 @@ describe "Cell" do
     it "has a ship" do
       expect(@cell.ship).to eq(nil)
     end
+
+    it "defaults to empty" do
+      expect(@cell.empty?).to eq(true)
+    end
   end
 end
