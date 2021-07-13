@@ -93,6 +93,7 @@ describe "Cell" do
 
     # TODO: test and method
     it "can render a sunk ship" do
+      
     end
   end
 end
