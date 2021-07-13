@@ -37,11 +37,19 @@ describe "Cell" do
     before(:each) do
       @cell = Cell.new("B4")
       @cruiser = Ship.new("Cruiser", 3)
+      @cell.place_ship(@cruiser)
     end
 
     it "fired upon defaults to false" do
       expect(@cell.fired_upon?).to eq(false)
     end
-    
+
+    it "is fired upon" do
+      expect(@cell.fired_upon?).to eq(false)
+      expect(@cell.ship.health).to eq(3)
+      @cell.fire_upon
+      expect(@cell.fired_upon?).to eq(true)
+      expect(@cell.ship.health).to eq(2)
+    end
   end
 end
