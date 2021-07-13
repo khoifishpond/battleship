@@ -27,7 +27,9 @@ describe "Cell" do
 
     it "can place a ship" do
       expect(@cell.ship).to eq(nil)
+
       @cell.place_ship(@cruiser)
+
       expect(@cell.ship).to eq(@cruiser)
       expect(@cell.empty?).to eq(false)
     end
@@ -47,7 +49,9 @@ describe "Cell" do
     it "is fired upon" do
       expect(@cell.fired_upon?).to eq(false)
       expect(@cell.ship.health).to eq(3)
+
       @cell.fire_upon
+      
       expect(@cell.fired_upon?).to eq(true)
       expect(@cell.ship.health).to eq(2)
     end
