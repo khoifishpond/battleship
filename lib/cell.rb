@@ -55,7 +55,11 @@ class Cell
   end
 
   def make_x
-    if reveal == true && @is_empty == false && @is_fired_upon == true
+    if reveal == true && @is_empty == false && @is_fired_upon == true && ship.is_sunk
+      'X'
+    else
+      '.'
+    end
   end
 
 end
