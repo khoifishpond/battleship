@@ -22,7 +22,7 @@ class Cell
   end
 
   def fire_upon
-    @ship.hit
+    @ship.hit if @is_empty == false #I think we need to make this a conditional if @is_empty false
     @is_fired_upon = true
   end
 
@@ -32,5 +32,13 @@ class Cell
     else
       '.'
     end
+
+    if reveal == true && @is_empty == true && @is_fired_upon == true
+      'M'
+    else
+      '.'
+    end
+
+
   end
 end
