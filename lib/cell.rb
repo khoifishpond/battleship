@@ -13,6 +13,7 @@ class Cell
 
   def place_ship(ship)
     @ship = ship
+    @is_empty = false
   end
 
 end
