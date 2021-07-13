@@ -32,7 +32,5 @@ class Cell
     else
       '.'
     end
-
-
   end
 end
