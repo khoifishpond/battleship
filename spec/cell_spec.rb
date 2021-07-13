@@ -30,7 +30,18 @@ describe "Cell" do
       @cell.place_ship(@cruiser)
       expect(@cell.ship).to eq(@cruiser)
       expect(@cell.empty?).to eq(false)
-
     end
+  end
+
+  context "Fired Upon" do
+    before(:each) do
+      @cell = Cell.new("B4")
+      @cruiser = Ship.new("Cruiser", 3)
+    end
+
+    it "fired upon defaults to false" do
+      expect(@cell.fired_upon?).to eq(false)
+    end
+    
   end
 end
