@@ -63,6 +63,9 @@ describe "Cell" do
 
     it "can render" do
       expect(@cell_1.render).to eq('.')
+    end
+
+    it "can (optionally) render the location of a ship" do
       expect(@cell_2.render).to eq('.')
       expect(@cell_2.render(true)).to eq('S')
     end
