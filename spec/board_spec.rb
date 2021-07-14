@@ -11,7 +11,7 @@ describe Board do
   end
 
   it 'exists' do
-    # TODO: expectation here
+    expect(board).to be_a(Board)
   end
 
   # will it return a hash of coordinates?
