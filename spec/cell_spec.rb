@@ -72,6 +72,7 @@ describe "Cell" do
     end
 
     it "can render" do
+
       expect(@cell_1.render).to eq('.')
     end
 
@@ -80,8 +81,7 @@ describe "Cell" do
 
       @cell_1.fire_upon
 
-      expect(@cell_1.render).to eq('.')
-      expect(@cell_1.render(true)).to eq('M')
+      expect(@cell_1.render).to eq('M')
     end
 
     it "can (optionally) render the location of a ship" do
@@ -95,8 +95,7 @@ describe "Cell" do
 
       @cell_2.fire_upon
 
-      expect(@cell_2.render).to eq('.')
-      expect(@cell_2.render(true)).to eq('H')
+      expect(@cell_2.render).to eq('H')
     end
 
     it "updates status of ship when hit" do
@@ -104,7 +103,7 @@ describe "Cell" do
 
       @cell_2.fire_upon
 
-      expect(@cell_2.render(true)).to eq('H')
+      expect(@cell_2.render).to eq('H')
       expect(@cell_2.ship.sunk?).to eq(false)
     end
 
@@ -114,8 +113,8 @@ describe "Cell" do
       @cruiser.hit
       @cruiser.hit
       @cell_2.fire_upon
-      
-      expect(@cell_2.render(true)).to eq('X')
+
+      expect(@cell_2.render).to eq('X')
     end
   end
 end

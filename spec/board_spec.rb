@@ -5,37 +5,47 @@ require './lib/cell'
 
 describe Board do
   before(:each) do
-    board = Board.new
-    cruiser = Ship.new('Cruiser', 3)
-    submarine = Ship.new('Submarine', 2)
+    @board = Board.new
+    @cruiser = Ship.new('Cruiser', 3)
+    @submarine = Ship.new('Submarine', 2)
   end
 
   it 'exists' do
-    # TODO: expectation here
+    expect(@board).to be_a(Board)
   end
 
-  # will it return a hash of coordinates?
-  xit '' do
-    # TODO: expectation here
+  it 'has cells' do
+    expect(@board.cells).to be_a(Hash)
+    expect(@board.cells["A1"]).to be_a(Cell)
+    expect(@board.cells["D3"]).to be_a(Cell)
   end
 
-  # is this coordinate or cell valid?
-  xit '' do
-    # TODO: expectation here
+  it 'has valid coordinates' do
+    expect(@board.valid_coordinate?("A1")).to eq(true)
+    expect(@board.valid_coordinate?("D4")).to eq(true)
+    expect(@board.valid_coordinate?("A5")).to eq(false)
+    expect(@board.valid_coordinate?("E1")).to eq(false)
+    expect(@board.valid_coordinate?("A22")).to eq(false)
   end
 
-  # is the ship's placement valid?
-  xit '' do
-    # TODO: expectation here
+  it 'has valid placement' do
+    expect(@board.valid_placement?(@cruiser, ["A1", "A2"])).to eq(false)
+    expect(@board.valid_placement?(@submarine, ["A2", "A3", "A4"])).to eq(false)
   end
 
-  # when placed, are the coordinates consecutive?
-  xit '' do
-    # TODO: expectation here
+  it 'has consecutive placement' do
+    expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A4"])).to eq(false)
+    expect(@board.valid_placement?(@submarine, ["A1", "C1"])).to eq(false)
+    expect(@board.valid_placement?(@cruiser, ["A3", "A2", "A1"])).to eq(false)
+    expect(@board.valid_placement?(@submarine, ["C1", "B1"])).to eq(false)
   end
 
-  # ships cannot be placed diagonally
-  xit '' do
-    # TODO: expectation here
+  it 'cannot be placed diagonally' do
+    expect(@board.valid_placement?(@cruiser, ["A1", "B2", "C3"])).to eq(false)
+    expect(@board.valid_placement?(@submarine, ["C2", "D3"])).to eq(false)
+  end
+
+  it 'cannot break??????????' do
+    # TODO: try to expect something that could break? IDK i'm sleep :(
   end
 end

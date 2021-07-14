@@ -22,19 +22,18 @@ class Cell
   end
 
   def fire_upon
-    @ship.hit if @is_empty == false #I think we need to make this a conditional if @is_empty false
-    @is_fired_upon = true
+    @ship.hit if @is_empty == false
   end
 
   def render(reveal = false)
-    if reveal == true && @is_empty == false && @is_fired_upon == true && @ship.sunk? == true
+    if reveal == false && @is_empty == false && @is_fired_upon == true && @ship.sunk? == true
       'X'
-    elsif reveal == true && @is_empty == false && @is_fired_upon == true
+    elsif reveal == false && @is_empty == false && @is_fired_upon == true
       'H'
+    elsif @is_fired_upon == true && reveal == false && @is_empty == true
+      'M'
     elsif reveal == true && @is_empty == false
       'S'
-    elsif reveal == true && @is_empty == true
-      'M'
     else
       '.'
     end
