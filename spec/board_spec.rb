@@ -33,13 +33,19 @@ describe Board do
     expect(@board.valid_placement?(@submarine, ["A2", "A3", "A4"])).to eq(false)
   end
 
-  # when placed, are the coordinates consecutive?
-  xit '' do
-    # TODO: expectation here
+  it 'has consecutive placement' do
+    expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A4"])).to eq(false)
+    expect(@board.valid_placement?(@submarine, ["A1", "C1"])).to eq(false)
+    expect(@board.valid_placement?(@cruiser, ["A3", "A2", "A1"])).to eq(false)
+    expect(@board.valid_placement?(@submarine, ["C1", "B1"])).to eq(false)
   end
 
-  # ships cannot be placed diagonally
-  xit '' do
-    # TODO: expectation here
+  it 'cannot be placed diagonally' do
+    expect(@board.valid_placement?(@cruiser, ["A1", "B2", "C3"])).to eq(false)
+    expect(@board.valid_placement?(@submarine, ["C2", "D3"])).to eq(false)
+  end
+
+  it 'cannot break??????????' do
+    # TODO: try to expect something that could break? IDK i'm sleep :(
   end
 end
