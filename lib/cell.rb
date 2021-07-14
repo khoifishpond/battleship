@@ -33,7 +33,7 @@ class Cell
       'H'
     elsif reveal == true && @is_empty == false
       'S'
-    elsif reveal == true && @is_empty == true
+    elsif reveal == true && @is_empty == true #needs fired upon
       'M'
     else
       '.'
