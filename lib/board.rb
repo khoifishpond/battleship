@@ -1,3 +1,4 @@
+require 'pry'
 class Board
   attr_reader :cells
 
@@ -92,8 +93,19 @@ class Board
   def place(ship, coordinates)
     if valid_placement?(ship, coordinates)
       coordinates.each do |coordinate|
-        @cells[coordinate] = ship
+        @cells[coordinate].place_ship(ship)
       end
+    end
+  end
+
+  def render(reveal = false)
+    @cells.each_valuec do |cell|
+      binding.pry
+
+
+      # if cell.is_a?(Cell) || cell.is_a?(Ship)
+      #   cell.render
+      # end
     end
   end
 end
