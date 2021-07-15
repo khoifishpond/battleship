@@ -27,11 +27,11 @@ class Cell
   end
 
   def render(reveal = false)
-    if reveal == false && @is_empty == false && @is_fired_upon == true && @ship.sunk? == true
+    if @is_empty == false && @is_fired_upon == true && @ship.sunk? == true
       'X'
-    elsif reveal == false && @is_empty == false && @is_fired_upon == true
+    elsif @is_empty == false && @is_fired_upon == true
       'H'
-    elsif reveal == false && @is_empty == true && @is_fired_upon == true
+    elsif @is_empty == true && @is_fired_upon == true
       'M'
     elsif reveal == true && @is_empty == false
       'S'
