@@ -22,6 +22,7 @@ class Cell
   end
 
   def fire_upon
+    @is_fired_upon = true
     @ship.hit if @is_empty == false
   end
 
@@ -30,7 +31,7 @@ class Cell
       'X'
     elsif reveal == false && @is_empty == false && @is_fired_upon == true
       'H'
-    elsif @is_fired_upon == true && reveal == false && @is_empty == true
+    elsif reveal == false && @is_empty == true && @is_fired_upon == true
       'M'
     elsif reveal == true && @is_empty == false
       'S'
