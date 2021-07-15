@@ -97,7 +97,7 @@ class Board
         # checks if columns are included in any consecutive columns array
         # return value (true/false)
         cons_columns.include?(columns)
-      
+
       # call helper method to see if placed vertically
       elsif placed_vertically?(coordinates)
 
