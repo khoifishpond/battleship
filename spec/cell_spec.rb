@@ -72,7 +72,6 @@ describe "Cell" do
     end
 
     it "can render" do
-
       expect(@cell_1.render).to eq('.')
     end
 
