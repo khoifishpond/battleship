@@ -15,8 +15,8 @@ describe Board do
 
     it 'has cells' do
       expect(@board.cells).to be_a(Hash)
-      expect(@board.cells["A1"]).to be_a(Cell)
-      expect(@board.cells["D3"]).to be_a(Cell)
+      expect(@board.cells[:A1]).to be_a(Cell)
+      expect(@board.cells[:D3]).to be_a(Cell)
     end
   end
 
@@ -62,9 +62,9 @@ describe Board do
     end
 
     it 'can place a ship' do
-      cell_1 = @board.cells["A1"]
-      cell_2 = @board.cells["A2"]
-      cell_3 = @board.cells["A3"]
+      cell_1 = @board.cells[:A1]
+      cell_2 = @board.cells[:A2]
+      cell_3 = @board.cells[:A3]
 
       cell_1.ship
       cell_2.ship
