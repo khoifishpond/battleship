@@ -57,31 +57,38 @@ class Board
     end
   end
 
+  def columns_consecutive?(coordinates)
+    columns = coordinates.map do |coordinate|
+      coordinate[1].to_i
+    end
+
+    cons_columns = [1, 2, 3, 4].each_cons(coordinates.length).to_a
+    cons_columns.include?(columns)
+  end
+
+  def rows_consecutive?(coordinates)
+    rows = coordinates.map do |coordinate|
+      coordinate[0]
+    end
+
+    cons_rows = ["A", "B", "C", "D"].each_cons(coordinates.length).to_a
+    cons_rows.include?(rows)
+  end
+
+  def consecutive?(coordinates)
+    (placed_horizontally?(coordinates) || placed_vertically?(coordinates)) && (rows_consecutive?(coordinates) || columns_consecutive?(coordinates))
+  end
+
   def not_overlapping?(coordinates)
     coordinates.all? do |coordinate|
       @cells[coordinate].is_empty
     end
   end
 
-  # THIS IS SO HIDEOUS @___@
   def valid_placement?(ship, coordinates)
-    if fits?(ship, coordinates)
-      if not_overlapping?(coordinates)
-        if placed_horizontally?(coordinates)
-          columns = coordinates.map do |coordinate|
-            coordinate[1].to_i
-          end
-          cons_columns = [1, 2, 3, 4].each_cons(coordinates.length).to_a
-          cons_columns.include?(columns)
-        elsif placed_vertically?(coordinates)
-          rows = coordinates.map do |coordinate|
-            coordinate[0]
-          end
-          cons_rows = ["A", "B", "C", "D"].each_cons(coordinates.length).to_a
-          cons_rows.include?(rows)
-        else
-          false
-        end
+    if fits?(ship, coordinates) && not_overlapping?(coordinates)
+      if placed_horizontally?(coordinates) || placed_vertically?(coordinates)
+        columns_consecutive?(coordinates) || rows_consecutive?(coordinates)
       else
         false
       end
