@@ -12,6 +12,6 @@ class Player
   end
 
   def fire_at(cell)
-    @board.cells[cell.to_sym].fire_upon
+    @board.cell_selection(cell).fire_upon
   end
 end
