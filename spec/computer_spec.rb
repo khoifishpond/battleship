@@ -13,16 +13,24 @@ describe "Computer" do
     @board = Board.new
     @new_computer = Computer.new(@board)
     @cruiser = Ship.new("Cruiser", 3)
+    @submarine = Ship.new('Submarine', 2)
   end
 
   it 'exists' do
 
     expect(@new_computer).to be_a(Computer)
 
-    expect(@new_computer.random_selection).to be_a(Cell)
   end
 
-  it "" do
+  it "can place ships randomly" do
+    coordinates = @new_computer.random_selection(@cruiser)
+
+    expect(@new_computer.board.valid_placement?(@cruiser, coordinates)).to eq(true)
+
+    coordinates_2 = @new_computer.random_selection(@submarine)
+
+    expect(@new_computer.board.valid_placement?(@submarine, coordinates_2)).to eq(true)
 
   end
+
 end
