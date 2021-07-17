@@ -7,8 +7,9 @@ require './lib/cell'
 describe Player do
   context 'Attributes' do
     before(:each) do
-      @board = Board.new
-      @new_player = Player.new(@board)
+      @player_board = Board.new
+      @computer_board = Board.new
+      @new_player = Player.new(@player_board, @computer_board)
       @input = ["A1", "B1", "C1"]
       @cruiser = Ship.new("Cruiser", 3)
     end
