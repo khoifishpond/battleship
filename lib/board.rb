@@ -23,6 +23,10 @@ class Board
     }
   end
 
+  def cell_selection(cell)
+    @cells[cell.to_sym]
+  end
+
   def valid_coordinate?(coordinate)
     @cells.key?(coordinate.to_sym)
   end

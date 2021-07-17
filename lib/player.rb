@@ -1,9 +1,10 @@
 class Player
-  attr_reader :coordinates, :board
+  attr_reader :coordinates, :player_board, :computer_board
 
-  def initialize(board)
+  def initialize(player_board, computer_board)
     @coordinates = []
-    @board = board
+    @player_board = player_board
+    @computer_board = computer_board
   end
 
   def select_coordinates(input)
@@ -12,6 +13,7 @@ class Player
   end
 
   def fire_at(cell)
-    @board.cells[cell.to_sym].fire_upon
+    @board.cell_selection(cell).fire_upon
   end
+
 end
