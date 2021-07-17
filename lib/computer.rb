@@ -22,4 +22,11 @@ class Computer < Player
     final_array.sample
   end
 
+  def computer_fire_at(cell)
+    all_cells = @board.cells.keys
+    random_cell_selection = target_practice.sample
+    all_cells.delete(random_cell_selection)
+    random_cell_selection[cell.to_sym].fire_upon
+  end
+
 end
