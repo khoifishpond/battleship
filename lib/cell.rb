@@ -22,8 +22,8 @@ class Cell
   end
 
   def fire_upon
-    @is_fired_upon = true
     @ship.hit if @is_empty == false
+    @is_fired_upon = true
   end
 
   def render(reveal = false)

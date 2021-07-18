@@ -11,7 +11,6 @@ describe Player do
       @computer_board = Board.new
       @new_player = Player.new(@player_board, @computer_board)
       @input = ["A1", "B1", "C1"]
-      @cruiser = Ship.new("Cruiser", 3)
     end
 
     it 'exists' do
@@ -21,15 +20,16 @@ describe Player do
     it 'starts with no coordinates selected' do
       expect(@new_player.coordinates).to eq([])
     end
-
+    
+    # don't think we need this test anymore?
     it 'can select coordinates' do
-      expect(@new_player.select_coordinates(@input)).to eq(["A1", "B1", "C1"])
+      expect(@new_player.select_coordinates).to be_a(Array)
     end
 
     it 'can fire upon' do
       @new_player.fire_at(@input.first)
 
-      expect(@board.cells[@input.first.to_sym].fired_upon?).to eq(true)
+      expect(@computer_board.cells[@input.first.to_sym].fired_upon?).to eq(true)
     end
   end
 end

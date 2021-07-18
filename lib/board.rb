@@ -83,8 +83,14 @@ class Board
     end
   end
 
+  def valid_coordinates?(coordinates)
+    coordinates.all? do |cell|
+      @cells.key?(cell.to_sym)
+    end
+  end
+
   def valid_placement?(ship, coordinates)
-    if fits?(ship, coordinates) && not_overlapping?(coordinates)
+    if fits?(ship, coordinates) && valid_coordinates?(coordinates) && not_overlapping?(coordinates)
       if placed_horizontally?(coordinates) || placed_vertically?(coordinates)
         columns_consecutive?(coordinates) || rows_consecutive?(coordinates)
       else
@@ -96,6 +102,7 @@ class Board
   end
 
   def place(ship, coordinates)
+    # require 'pry'; binding.pry
     if valid_placement?(ship, coordinates)
       coordinates.each do |coordinate|
         @cells[coordinate.to_sym].place_ship(ship)
@@ -119,9 +126,9 @@ class Board
     "D #{@cells[:D1].render(true)} #{@cells[:D2].render(true)} #{@cells[:D3].render(true)} #{@cells[:D4].render(true)} \n"
 
     if reveal == true
-      rendered_board_revealed
+      puts rendered_board_revealed
     else
-      rendered_board
+      puts rendered_board
     end
   end
 end
