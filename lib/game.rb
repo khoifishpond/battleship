@@ -17,14 +17,10 @@ class Game
     @player_board = Board.new
     @computer = Computer.new(@player_board, @computer_board)
     @player = Player.new(@player_board, @computer_board)
-
-    # gave each player their own set of ships
     @player_cruiser = Ship.new("Cruiser", 3)
     @player_submarine = Ship.new("Submarine", 2)
     @computer_cruiser = Ship.new("Cruiser", 3)
     @computer_submarine = Ship.new("Submarine", 2)
-
-    # may not need this? makes automation for computer placement easier though
     @all_comp_ships = [@computer_cruiser, @computer_submarine]
   end
 
@@ -32,14 +28,12 @@ class Game
     puts @welcome_message
   end
 
-  # moved player selection stuff to game class
   def user_input
     gets.chomp
   end
 
   def player_message
-    # displays only once. ONE AND DONEEEEE
-    puts "I have laid out my ships on the grid.\n" +
+    puts "\nI have laid out my ships on the grid.\n" +
          "You now need to lay out your two ships.\n" +
          "The Cruiser is three units long and the Submarine is two units long.\n" +
          "\n  1 2 3 4 \n" +
@@ -58,7 +52,7 @@ class Game
       input = user_input.upcase.split
     end
 
-    if @player_board.valid_placement?(player_cruiser, input) # && a;sdfj;aldjf;lasjd;flajsdf;lasdfjal;sd;ajf
+    if @player_board.valid_placement?(player_cruiser, input)
       @player_board.place(player_cruiser, input)
       puts ""
       @player_board.render(true)
@@ -135,25 +129,22 @@ class Game
       player_shot
       display_boards
       if game_over? && player_wins
-        # display_boards
         puts "\nCongrats... You won."
         puts "(ノಠ益ಠ)ノ彡┻━┻"
-        break
+        play_again?
       end
 
       computer_shot
       display_boards
       if game_over? && computer_wins
-        # display_boards
         puts "\nHA! I won!"
         puts "(☞ ՞ਊ ՞)☞"
-        break
+        play_again?
       end
     end
   end
 
   def play
-    # computer automatically places ships on board at start of play
     @all_comp_ships.each do |ship|
       coordinates = @computer.random_selection(ship)
 
@@ -163,7 +154,6 @@ class Game
       @computer_board.place(ship, coordinates)
     end
 
-    # then player places ships
     player_message
     player_cruiser_placement(@player_cruiser)
     player_submarine_placement(@player_submarine)
@@ -189,6 +179,21 @@ class Game
     player_wins || computer_wins
   end
 
+  def play_again?
+    puts "\nWould you like to play again?\n" +
+          "Enter p to play again or q to quit."
+    input = user_input.downcase
+    until input == "p" || input = "q"
+      "\nInvalid command. Enter p to play again or q to quit."
+    end
+
+    if input == "p"
+      play
+    else
+      quit
+    end
+  end
+
   def start
     main_menu
     input = user_input.downcase
@@ -200,32 +205,3 @@ class Game
     end
   end
 end
-
-
-  # def valid_input?(coordinates)
-  #   coordinates.all? do |cell|
-  #     @player_board.valid_coordinate?(cell)
-  #   end
-  # end
-
-  # def place_your_ships
-  #   @player_board.render(true)
-
-  #   @all_ships.each do |ship|
-  #     "Enter the squares for the #{ship.name} (#{ship.length} spaces):"
-  #     input = @player.select_coordinates
-  #   end
-
-    # until @all_ships.size == 0
-    #   @all_ships.each do |ship|
-    #     "Enter the squares for the #{ship.name} (#{ship.length} spaces):"
-    #     coordinates = @player.select_coordinates
-    #     if valid_input?(coordinates)
-    #       @player_board.place(ship, coordinates)
-    #       @all_ships.shift
-    #     else
-    #       'Those are invalid coordinates. Please try again:'
-    #     end
-    #   end
-    # end
-  # end
