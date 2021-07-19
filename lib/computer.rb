@@ -1,13 +1,7 @@
 require './lib/player'
 
 class Computer < Player
-  # attr_reader :player_board, :computer_board
-
-  # def initialize(player_board, computer_board)
-  #   @player_board = player_board
-  #   @computer_board = computer_board
-  # end
-
+  
   def random_selection(ship)
     all_positions_possible = []
     rows_columns = ["A", "B", "C", "D", "1", "2", "3", "4"]
@@ -30,9 +24,8 @@ class Computer < Player
   end
 
   def computer_fire_at
-    all_cells = @player_board.cells.keys
-    random_cell_selection = all_cells.sample
-    all_cells.delete(random_cell_selection)
+    random_cell_selection = all_player_cells.sample
+    all_player_cells.delete(random_cell_selection)
     @player_board.cells[random_cell_selection].fire_upon
     random_cell_selection
   end
