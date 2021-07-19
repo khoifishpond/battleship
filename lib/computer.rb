@@ -2,7 +2,7 @@ require './lib/player'
 
 class Computer < Player
   # attr_reader :player_board, :computer_board
-  
+
   # def initialize(player_board, computer_board)
   #   @player_board = player_board
   #   @computer_board = computer_board
@@ -33,6 +33,7 @@ class Computer < Player
     all_cells = @player_board.cells.keys
     random_cell_selection = all_cells.sample
     all_cells.delete(random_cell_selection)
+    @player_board.cells[random_cell_selection].fire_upon
     random_cell_selection
   end
 end
