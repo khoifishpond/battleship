@@ -7,13 +7,7 @@ class Player
     @all_player_cells = @player_board.cells.keys
   end
 
-  # def select_coordinates
-  #   input = gets.chomp
-  #   input.upcase.split
-  # end
-
   def fire_at(cell)
-    # require 'pry'; binding.pry
     @computer_board.cells[cell.to_sym].fire_upon
   end
 end

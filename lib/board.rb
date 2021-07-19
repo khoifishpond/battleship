@@ -2,7 +2,6 @@ class Board
   attr_reader :cells
 
   def initialize
-    # rename these variables? method has the same name
     @cells = {
       :A1 => Cell.new("A1"),
       :A2 => Cell.new("A2"),
@@ -102,7 +101,6 @@ class Board
   end
 
   def place(ship, coordinates)
-    # require 'pry'; binding.pry
     if valid_placement?(ship, coordinates)
       coordinates.each do |coordinate|
         @cells[coordinate.to_sym].place_ship(ship)
