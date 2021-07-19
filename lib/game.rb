@@ -128,6 +128,7 @@ class Game
       if game_over? && player_wins
         display_boards
         puts "\nCongrats... You won."
+        puts "(ノಠ益ಠ)ノ彡┻━┻"
         break
       end
 
@@ -144,9 +145,14 @@ class Game
   def play
     # computer automatically places ships on board at start of play
     @all_comp_ships.each do |ship|
-      @computer_board.place(ship, @computer.random_selection(ship))
+      coordinates = @computer.random_selection(ship)
+
+      until @computer_board.valid_placement?(ship, coordinates) do
+        coordinates = @computer.random_selection(ship)
+      end
+      @computer_board.place(ship, coordinates)
     end
-    
+
     # then player places ships
     player_message
     player_cruiser_placement(@player_cruiser)
@@ -198,7 +204,7 @@ end
   #     "Enter the squares for the #{ship.name} (#{ship.length} spaces):"
   #     input = @player.select_coordinates
   #   end
-    
+
     # until @all_ships.size == 0
     #   @all_ships.each do |ship|
     #     "Enter the squares for the #{ship.name} (#{ship.length} spaces):"
