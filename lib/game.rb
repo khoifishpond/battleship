@@ -54,12 +54,13 @@ class Game
     input = user_input.upcase.split
 
     until @player_board.valid_placement?(player_cruiser, input) do
-      puts "Invalid coordinates. Please try again: "
+      puts "\nInvalid coordinates. Please try again: "
       input = user_input.upcase.split
     end
 
     if @player_board.valid_placement?(player_cruiser, input) # && a;sdfj;aldjf;lasjd;flajsdf;lasdfjal;sd;ajf
       @player_board.place(player_cruiser, input)
+      puts ""
       @player_board.render(true)
     end
   end
@@ -75,6 +76,7 @@ class Game
 
     if @player_board.valid_placement?(player_submarine, input)
       @player_board.place(player_submarine, input)
+      puts ""
       @player_board.render(true)
     end
   end
@@ -97,15 +99,19 @@ class Game
 
     if @computer_board.valid_coordinate?(input.upcase) && @computer_board.cells[input.upcase.to_sym].fired_upon?
       puts "\nCell has already been fired upon. You wasted a turn."
+      puts ""
     else
       @player.fire_at(input.upcase)
 
       if @computer_board.cells[input.upcase.to_sym].render == 'X'
         puts "\nYour shot on #{input.upcase} was a hit! You sunk my battleship!"
+        puts ""
       elsif @computer_board.cells[input.upcase.to_sym].render == "H"
         puts "\nYour shot on #{input.upcase} was a hit!"
+        puts ""
       else
         puts "\nYour shot on #{input.upcase} was a miss. LOLOLOL!"
+        puts ""
       end
     end
   end
@@ -114,10 +120,13 @@ class Game
     target = @computer.computer_fire_at
     if @player_board.cells[target].render == 'X'
       puts "\nMy shot on #{@player_board.cells[target].coordinate} was a hit! Baiiiiii."
+      puts ""
     elsif @player_board.cells[target].render == 'H'
       puts "\nMy shot on #{@player_board.cells[target].coordinate} was a hit!"
+      puts ""
     else
       puts "\nMy shot on #{@player_board.cells[target].coordinate} was a miss..."
+      puts ""
     end
   end
 
@@ -126,7 +135,7 @@ class Game
       player_shot
       display_boards
       if game_over? && player_wins
-        display_boards
+        # display_boards
         puts "\nCongrats... You won."
         puts "(ノಠ益ಠ)ノ彡┻━┻"
         break
@@ -135,8 +144,9 @@ class Game
       computer_shot
       display_boards
       if game_over? && computer_wins
-        display_boards
+        # display_boards
         puts "\nHA! I won!"
+        puts "(☞ ՞ਊ ՞)☞"
         break
       end
     end
@@ -158,6 +168,7 @@ class Game
     player_cruiser_placement(@player_cruiser)
     player_submarine_placement(@player_submarine)
     puts "\nLET'S GO!"
+    puts ""
     display_boards
     turn
   end
