@@ -131,7 +131,7 @@ class Game
       if game_over? && player_wins
         puts "\nCongrats... You won."
         puts "(ノಠ益ಠ)ノ彡┻━┻"
-        play_again?
+        break
       end
 
       computer_shot
@@ -139,9 +139,10 @@ class Game
       if game_over? && computer_wins
         puts "\nHA! I won!"
         puts "(☞ ՞ਊ ՞)☞"
-        play_again?
+        break
       end
     end
+    play_again?
   end
 
   def play
@@ -179,17 +180,32 @@ class Game
     player_wins || computer_wins
   end
 
+  def reset
+    @computer_board = Board.new
+    @player_board = Board.new
+    @computer = Computer.new(@player_board, @computer_board)
+    @player = Player.new(@player_board, @computer_board)
+    @player_cruiser = Ship.new("Cruiser", 3)
+    @player_submarine = Ship.new("Submarine", 2)
+    @computer_cruiser = Ship.new("Cruiser", 3)
+    @computer_submarine = Ship.new("Submarine", 2)
+    @all_comp_ships = [@computer_cruiser, @computer_submarine]
+  end
+
   def play_again?
     puts "\nWould you like to play again?\n" +
           "Enter p to play again or q to quit."
     input = user_input.downcase
-    until input == "p" || input = "q"
-      "\nInvalid command. Enter p to play again or q to quit."
+    
+    until input == "p" || input == "q"
+      puts "\nInvalid command. Enter p to play again or q to quit."
+      input = user_input.downcase
     end
 
     if input == "p"
+      reset
       play
-    else
+    elsif input == "q"
       quit
     end
   end
@@ -198,9 +214,14 @@ class Game
     main_menu
     input = user_input.downcase
 
-    if input == 'p'
+    until input == "p" || input == "q"
+      puts "\nInvalid command. Enter p to play again or q to quit."
+      input = user_input.downcase
+    end
+
+    if input == "p"
       play
-    elsif input == 'q'
+    elsif input == "q"
       quit
     end
   end
